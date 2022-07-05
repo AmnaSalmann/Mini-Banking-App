@@ -1,0 +1,87 @@
+import java.util.Scanner;
+public class Bank{
+public static void main(String[] args) {
+    String[] accNames= new String[100];
+    double[] accBalances= new double[100];
+    int size=0;
+    Scanner input= new Scanner(System.in);
+    for(;true;){ //used it for the program to run infinitely untill user quits by pressng -1
+System.out.println("");
+System.out.println("Bank Admin Menu");
+System.out.println("Please enter a menu option");
+System.out.println("(1): Add customer to bank");
+System.out.println("(2): Change customer name");
+System.out.println("(3): Check account balance");
+System.out.println("(4): Modify account balance");
+System.out.println("(5): Summary of all accounts");
+System.out.println("(-1): Quit");
+ //system.in indicates that we're taking input from the terminal (console) and not some files
+int userInput= input.nextInt();
+
+if(userInput==1) {
+System.out.println("Please enter your name");
+String name = input.next();
+accNames[size]= name;
+
+System.out.println("Please enter an account balance");
+double balance= input.nextDouble();
+accBalances[size]=balance;
+System.out.println("Your customer ID is:" +size);
+size++;
+}
+if(userInput==2) {
+int id;
+String name;
+System.out.println("Enter Your customer ID:");
+id= input.nextInt();
+System.out.println("Your previous name for this ID was: " +accNames[id]);
+System.out.println("Now enter the new name:");
+name= input.next();
+accNames[id]= name;
+System.out.println("Your new name for this ID is:" +accNames[id]);
+
+// or run a loop to search in array the name and replace it
+}
+ if(userInput==3) {
+    System.out.println("Please enter your account ID: ");
+    int id= input.nextInt();
+    System.out.println("Your Account Balance is:" +accBalances[id]);
+}
+ if(userInput==4) {
+System.out.println("Please enter account ID");
+int id= input.nextInt();
+System.out.println("Press 1 for deposit and 2 for withdraw");
+int x;
+Double amount;
+x=input.nextInt();
+if(x==1)
+{
+System.out.println("Enter the amount to deposit:");
+amount= input.nextDouble();
+System.out.println("New balance is:" +(amount + accBalances[id]));
+}
+else if(x==2)
+{
+    System.out.println("Enter the amount to withdraw:");
+    amount= input.nextDouble();
+    if(amount<accBalances[id]){
+        System.out.println("Insufficient funds");
+    }
+    System.out.println("New balance is:" +( accBalances[id]- amount));
+}
+}
+ if(userInput==5) {
+System.out.println("ACCOUNT SUMMARY MENU");
+double total=0;
+for(int i=0;i<100;i++)
+{
+total= total + accBalances[i];
+System.out.println("Account balance for banking ID: " +i +"=" +accBalances[i]);
+}
+System.out.println("The total of all accounts in Amna's Bank is: " +total);
+ }
+ if(userInput== -1) {
+System.out.println("Thankyou for using Amna's Bank Services :) ");
+ }}
+}}
+//Only one Error yet to resolve: For loop closing bracket is before the  if(userInput== -1)
